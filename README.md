@@ -21,7 +21,9 @@ For the original scans of the journal:
 
 For the transcript of the journal that's in a docx file:
 
-- parse the docx file and convert to individual HTML pages, one per page
+- parse the docx file 
+- creatge individual HTML pages for a browse option
+- create page text files to train an LLM
 
 ## Notes
 
