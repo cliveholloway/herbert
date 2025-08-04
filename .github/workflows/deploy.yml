@@ -32,6 +32,6 @@ jobs:
             source .venv/bin/activate
             pip install --upgrade pip
             pip install -r requirements.txt
-            python ./journal_processing/scripts/extract.py
+            python ./journal_processing/scripts/extract.py data/journal.docx
           EOF
 
