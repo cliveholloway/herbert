@@ -23,11 +23,14 @@ jobs:
         run: |
           rsync -az --delete ./ clive@cliveholloway.net:~/herbert/
 
-      - name: Run post-deploy script
+      - name: Set up venv and run extract script
         run: |
           ssh -i ~/.ssh/id_ed25519 clive@cliveholloway.net << 'EOF'
             cd ~/herbert
+            python3 -m venv .venv
             source .venv/bin/activate
-            ./scripts/post_deploy.py
+            pip install --upgrade pip
+            pip install -r requirements.txt
+            ./journal_processing/scripts/extract.py
           EOF
 
