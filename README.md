@@ -3,7 +3,7 @@
 This repo is my first coding in Python, after 29 years of focusing on Perl.
 
 For speed, I have written this using "vibe coding" followed by manual tweaking
-as needed.
+as needed. This is about 3 days work in total, spread over a week.
 
 The goal is to create web site assets, using Python, to showcase my Great,
 Great Uncle's journals that he wrote in 1918. A separate (private) repo
@@ -37,7 +37,7 @@ assets made a lot more sense than trying to hack through XML parsing.
 This will probably not be a complete project, but it should show how quickly I can
 learn and implement a new stack via "vibe coding" and by leveraging my understanding
 of design patterns from Perl. Much as I love Perl, I get that most of the industry
-has a not so good view of it.
+has a not so good view of it, and it's days as a commercial language are numbered.
 
 For more information about my general experience and references, please see:
 
@@ -79,3 +79,4 @@ and the comments stored in journal_processing/build/data.json  (this is used to 
 back into into the web pages).
 
 Raw text is placed in journal_processing/build/txt (used to train the LLM)
+
