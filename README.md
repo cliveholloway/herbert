@@ -79,4 +79,3 @@ and the comments stored in journal_processing/build/data.json  (this is used to 
 back into into the web pages).
 
 Raw text is placed in journal_processing/build/txt (used to train the LLM)
-
