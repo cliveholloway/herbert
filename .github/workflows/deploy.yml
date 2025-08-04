@@ -22,3 +22,12 @@ jobs:
       - name: Deploy with rsync
         run: |
           rsync -az --delete ./ clive@cliveholloway.net:~/herbert/
+
+      - name: Run post-deploy script
+        run: |
+          ssh -i ~/.ssh/id_ed25519 clive@cliveholloway.net << 'EOF'
+            cd ~/herbert
+            source .venv/bin/activate
+            ./scripts/post_deploy.py
+          EOF
+
