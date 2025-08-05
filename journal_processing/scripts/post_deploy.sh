@@ -8,4 +8,5 @@ source .venv/bin/activate
 pip install --upgrade pip
 pip install -r requirements.txt
 
-python ./journal_processing/scripts/extract.py data/journal.docx data/HerbertHollowayJournals.docx
+python ./journal_processing/scripts/extract.py \
+    data/HerbertHollowayJournals.docx
