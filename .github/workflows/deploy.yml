@@ -30,4 +30,3 @@ jobs:
             cd ~/herbert
             ./journal_processing/scripts/post_deploy.sh
           EOF
-
