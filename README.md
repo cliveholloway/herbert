@@ -1,15 +1,28 @@
 # Herbert Holloway's Journal
 
+## Introduction
+
 This repo is my first coding in Python, after 29 years of focusing on Perl.
 
 For speed, I have written this using "vibe coding" followed by manual tweaking
-as needed. This is about 3 days work in total, spread over a week.
+as needed. This is about a week's work in total.
 
 The goal is to create web site assets, using Python, to showcase my Great,
 Great Uncle's journals that he wrote in 1918. A separate (private) repo
 takes the output from this code and uses it to serve the web site:
 
 https://HerbertHolloway.org
+
+I've used [Jekyll](https://jekyllrb.com/) to build out the site. Never used it
+before, but got everything built and working in less than a day, and figured
+it would be a good example of learning a new stack.
+
+I have included a zip of the core of the Jekyll site in this file:
+
+    data/JekyllWebSite.zip
+
+just in case you're curious. I've kept the site simple, so not much to see except
+for the book page navigation (that works in desktop and on mobile).
 
 ## Features
 
@@ -27,12 +40,13 @@ For the transcript of the journal that's in a docx file:
 
 ## Notes
 
-This repo only includes a few sample images and a few pages of the journal
-
 I looked at auto-parsing out the images too, but hit some complications with the way
-the images were originally added, so I am only creationg the HTML and comments dynamically.
+the images were originally added, so I am only creating the HTML and comments dynamically.
 The images are fixed anyway, so the 10 minutes it took me to manually create the
 assets made a lot more sense than trying to hack through XML parsing.
+
+It looks like blank pages were omitted from the conversion, so I do need to rename a
+bunch of the images so that they render on the correct pages.
 
 This will probably not be a complete project, but it should show how quickly I can
 learn and implement a new stack via "vibe coding" and by leveraging my understanding
@@ -45,13 +59,17 @@ https://cliveholloway.net/2025
 
 ## Running the code
 
-After you've checked out the repo, you can look at the example images that were created
-while testing (and committed here for visibility)
+### env set up
+
+After you've checked out the repo, you can run the individual scripts to see them in
+action.
 
     # set up your env
     python3 -m venv .venv
     source .venv/bin/activate
     pip install poetry
+
+### Image processing
 
 For the image processing code, it's broken into 3 scripts. Each batch processes
 a directory of images. I have included scans of the first 2 pages in the repo
@@ -70,12 +88,16 @@ Deskewed images are in image_processing/build/deskewed_scans
 
     # TODO - get stitching fixed and put instructions in here
 
+### Journal parsing
+
 For the journal processing, run this script to build out the web pages:
 
     python3 journal_processing/scripts/extract.py data/HerbertHollowayJournals.docx
 
-After you run the script, you'll see the HTML pages in the dir journal_processing/build/pages
-and the comments stored in journal_processing/build/data.json  (this is used to add the comments
-back into into the web pages).
+After you run the script, you'll see the HTML pages and data.json in the dir;
 
-Raw text is placed in journal_processing/build/txt (used to train the LLM)
+    journal_processing/build
+
+The data.json file is used to manage the comment additions to the pages.
+
+Raw text is placed in journal_processing/build/txt (used to train the LLM - TODO) 
