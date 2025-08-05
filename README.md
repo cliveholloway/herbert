@@ -95,7 +95,8 @@ Deskewed images are in image_processing/build/deskewed_scans
 
 For the journal processing, run this script to build out the web pages:
 
-    python3 journal_processing/scripts/extract.py data/HerbertHollowayJournals.docx
+    python3 journal_processing/scripts/extract.py \
+        data/HerbertHollowayJournals.docx
 
 After you run the script, you'll see the HTML pages and data.json in the dir;
 
