@@ -227,22 +227,26 @@ if current_page:
     pages.append((page_number, current_page))
 
 # Write HTML and metadata, skipping page 0
-metadata = []
+comment_output = {}
+comment_index = 0
 
 for page_num, lines in pages:
     if page_num == 0:
         continue
-    html_path = os.path.join(OUTPUT_DIR, f"page_{page_num}.html")
-    comments_data = [c for _, _, cs in lines for c in cs]
-    metadata.append({
-        "page": page_num + 1,
-        "comments": comments_data
-    })
+
+    html_path = os.path.join(OUTPUT_HTML_DIR, f"page_{page_num}.html")
     with open(html_path, "w", encoding="utf-8") as f:
         for html, _, _ in lines:
             f.write(html + "\n")
 
-with open("journal_processing/build/data.json", "w", encoding="utf-8") as f:
-    json.dump(metadata, f, indent=2)
+    comments_data = [c for _, _, cs in lines for c in cs]
+    if comments_data:
+        comment_output[str(page_num)] = {
+            f"c{comment_index + i}": c["text"]
+            for i, c in enumerate(comments_data)
+        }
+        comment_index += len(comments_data)
 
+with open(OUTPUT_JSON, "w", encoding="utf-8") as f:
+    json.dump(comment_output, f, indent=2)
 

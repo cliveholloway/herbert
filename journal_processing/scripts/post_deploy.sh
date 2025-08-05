@@ -8,8 +8,4 @@ source .venv/bin/activate
 pip install --upgrade pip
 pip install -r requirements.txt
 
-python ./journal_processing/scripts/extract.py data/journal.docx
-
-mkdir -p ../www/herbertholloway.org/public_html/pages
-cp ./journal_processing/build/pages/* ../www/herbertholloway.org/public_html/pages/
-cp ./journal_processing/build/data.json ../www/herbertholloway.org/public_html/
+python ./journal_processing/scripts/extract.py data/journal.docx data/HerbertHollowayJournals.docx

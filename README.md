@@ -70,9 +70,9 @@ Deskewed images are in image_processing/build/deskewed_scans
 
     # TODO - get stitching fixed and put instructions in here
 
-For the journal processing, I have included a few sample pages, some with images:
+For the journal processing, run this script to build out the web pages:
 
-    python3 journal_processing/scripts/extract.py data/journal.docx
+    python3 journal_processing/scripts/extract.py data/HerbertHollowayJournals.docx
 
 After you run the script, you'll see the HTML pages in the dir journal_processing/build/pages
 and the comments stored in journal_processing/build/data.json  (this is used to add the comments
