@@ -8,16 +8,16 @@ into a web site:
 
 https://HerbertHolloway.org
 
-So, I thought I'd take the opportunity to plow through some Python coding - 
-something I should probably do after spending 29 years focusing on Perl.
+So, I thought I'd take the opportunity to demonstrate some Python coding - 
+something I should probably do after spending 29 years focusing mainly on Perl.
 
-For speed, I have written most iof this dcode using "vibe coding", followed by
+For speed, I have written most of this code using "vibe coding", followed by
 manual tweaking as needed. This is about a week's work in total.
 
 I've used [Jekyll](https://jekyllrb.com/) to build out the site. Never used it
 before, but got everything built and working in less than a day, and figured
 it would be a good example of learning a new stack. The site is built out using
-a githubv deploy action.
+a github deploy action.
 
 I have included a zip of the core of the Jekyll site in this file:
 
@@ -48,7 +48,7 @@ The images are fixed anyway, so the 10 minutes it took me to manually create the
 assets made a lot more sense than trying to hack through XML parsing.
 
 It looks like blank pages were omitted from the conversion though, so I do need to rename a
-bunch of the images so that they render on the correct pages.
+bunch of the images so that they render on the correct pages (TODO).
 
 This will probably not be a complete project, but it should show how quickly I can
 learn and implement a new stack via "vibe coding" and by leveraging my understanding
@@ -104,4 +104,6 @@ After you run the script, you'll see the HTML pages and data.json in the dir;
 
 The data.json file is used to manage the comment additions to the pages.
 
-Raw text is placed in journal_processing/build/txt (used to train the LLM - TODO) 
+The pages and data.json are added to the web site via a build action in the web site repo.
+
+journal_processing/build/txt is going to be used to train the LLM - TODO
