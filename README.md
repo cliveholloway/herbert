@@ -2,20 +2,22 @@
 
 ## Introduction
 
-This repo is my first coding in Python, after 29 years of focusing on Perl.
-
-For speed, I have written this using "vibe coding" followed by manual tweaking
-as needed. This is about a week's work in total.
-
-The goal is to create web site assets, using Python, to showcase my Great,
-Great Uncle's journals that he wrote in 1918. A separate (private) repo
-takes the output from this code and uses it to serve the web site:
+I have an ongoing personal project to study and publish information about
+my Great, Great Uncle based on his Journals. I am slowly building things out
+into a web site:
 
 https://HerbertHolloway.org
 
+So, I thought I'd take the opportunity to plow through some Python coding - 
+something I should probably do after spending 29 years focusing on Perl.
+
+For speed, I have written most iof this dcode using "vibe coding", followed by
+manual tweaking as needed. This is about a week's work in total.
+
 I've used [Jekyll](https://jekyllrb.com/) to build out the site. Never used it
 before, but got everything built and working in less than a day, and figured
-it would be a good example of learning a new stack.
+it would be a good example of learning a new stack. The site is built out using
+a githubv deploy action.
 
 I have included a zip of the core of the Jekyll site in this file:
 
@@ -24,13 +26,13 @@ I have included a zip of the core of the Jekyll site in this file:
 just in case you're curious. I've kept the site simple, so not much to see except
 for the book page navigation (that works in desktop and on mobile).
 
-## Features
+## Features in this repo
 
 For the original scans of the journal:
 
 - convert TIF images to PNG
 - deskew images
-- stitch images together
+- stitch images together (TODO - steep learning curve here)
 
 For the transcript of the journal that's in a docx file:
 
@@ -45,7 +47,7 @@ the images were originally added, so I am only creating the HTML and comments dy
 The images are fixed anyway, so the 10 minutes it took me to manually create the
 assets made a lot more sense than trying to hack through XML parsing.
 
-It looks like blank pages were omitted from the conversion, so I do need to rename a
+It looks like blank pages were omitted from the conversion though, so I do need to rename a
 bunch of the images so that they render on the correct pages.
 
 This will probably not be a complete project, but it should show how quickly I can
