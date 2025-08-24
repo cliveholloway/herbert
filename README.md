@@ -1,5 +1,12 @@
 # Herbert Holloway's Journal
 
+
+8/24/25 - ignore this for now. I moved the image stitching to its own
+repo, burt haven't cleaned this one up yet:
+
+https://github.com/cliveholloway/document_digitizer/
+
+
 ## Introduction
 
 I have an ongoing personal project to study and publish information about
