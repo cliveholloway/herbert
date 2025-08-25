@@ -1,25 +1,19 @@
-[project]
-name = "HerbertHolloway"
-version = "0.1.0"
-description = "Manipulating original scans, and building out core web pages from Herbert Holloway's journals"
-authors = [
-    {name = "Clive Holloway",email = "clive.holloway@gmail.com"}
-]
-readme = "README.md"
-requires-python = ">=3.12"
-dependencies = [
-    "pillow (>=11.3.0,<12.0.0)",
-    "opencv-python (>=4.12.0.88,<5.0.0.0)",
-    "lxml (>=6.0.0,<7.0.0)",
-    "python-docx (>=1.2.0,<2.0.0)",
-    "pymupdf (>=1.26.3,<2.0.0)"
-]
-
-
 [build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
 
-[tool.poetry]
-package-mode = false
+[project]
+name = "herbert"
+version = "0.1.0"
+description = "Herbert journal processing toolkit"
+authors = [{ name = "Clive Holloway" }]
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "lxml",
+    "python-docx",
+]
+
+[project.scripts]
+herbert = "herbert.__main__:main"
 
