@@ -1,5 +1,6 @@
 import os
 import json
+import shutil
 from lxml import etree
 from lxml.etree import QName
 from docx import Document
@@ -11,18 +12,30 @@ NAMESPACE = {
     "r": "http://schemas.openxmlformats.org/officeDocument/2006/relationships",
 }
 
+OUTPUT_DIR = "output"  # fixed output directory
 
-def extract_docx(input_docx: str, build_dir: str = "journal_processing/build") -> None:
+
+def extract_docx(input_docx: str) -> None:
     """
     Extract pages, plain text, and comments from a DOCX into HTML, TXT, and JSON.
 
     Args:
         input_docx: Path to the input .docx file
-        build_dir:  Base directory for outputs (pages/, txt/, data.json)
+
+    Output:
+        output/pages/*.html
+        output/txt/*.txt
+        output/data.json
     """
-    html_dir = os.path.join(build_dir, "pages")
-    txt_dir = os.path.join(build_dir, "txt")
-    json_path = os.path.join(build_dir, "data.json")
+
+    # clear and recreate output dir each run
+    if os.path.exists(OUTPUT_DIR):
+        shutil.rmtree(OUTPUT_DIR)
+    os.makedirs(OUTPUT_DIR)
+
+    html_dir = os.path.join(OUTPUT_DIR, "pages")
+    txt_dir = os.path.join(OUTPUT_DIR, "txt")
+    json_path = os.path.join(OUTPUT_DIR, "data.json")
 
     os.makedirs(html_dir, exist_ok=True)
     os.makedirs(txt_dir, exist_ok=True)
@@ -123,4 +136,6 @@ def extract_docx(input_docx: str, build_dir: str = "journal_processing/build") -
 
     with open(json_path, "w", encoding="utf-8") as f:
         json.dump(metadata, f, indent=2)
+
+    print(f"✓ Extracted {len(pages)-1} pages to {OUTPUT_DIR}/")
 
