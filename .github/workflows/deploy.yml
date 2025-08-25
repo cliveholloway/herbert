@@ -28,5 +28,5 @@ jobs:
           ssh -i ~/.ssh/id_ed25519 clive@cliveholloway.net << 'EOF'
             set -e
             cd ~/herbert
-            ./journal_processing/scripts/post_deploy.sh
+            ./.github/scripts/post_deploy.sh
           EOF

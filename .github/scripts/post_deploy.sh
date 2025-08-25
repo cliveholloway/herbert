@@ -9,7 +9,5 @@ source .venv/bin/activate
 pip install --upgrade pip
 pip install -r requirements.txt
 
-
 # build out the pages and data.json
-python ./journal_processing/scripts/extract.py \
-    data/HerbertHollowayJournals.docx
+herbert extract data/HerbertHollowayJournals.docx
