@@ -1,12 +1,5 @@
 # Herbert Holloway's Journal
 
-
-8/24/25 - ignore this for now. I moved the image stitching to its own
-repo, burt haven't cleaned this one up yet:
-
-https://github.com/cliveholloway/document_digitizer/
-
-
 ## Introduction
 
 I have an ongoing personal project to study and publish information about
@@ -16,10 +9,7 @@ into a web site:
 https://HerbertHolloway.org
 
 So, I thought I'd take the opportunity to demonstrate some Python coding - 
-something I should probably do after spending 29 years focusing mainly on Perl.
-
-For speed, I have written most of this code using "vibe coding", followed by
-manual tweaking as needed. This is about a week's work in total.
+something I should probably do after spending 30 years focusing mainly on Perl.
 
 I've used [Jekyll](https://jekyllrb.com/) to build out the site. Never used it
 before, but got everything built and working in less than a day, and figured
@@ -33,34 +23,46 @@ I have included a zip of the core of the Jekyll site in this file:
 just in case you're curious. I've kept the site simple, so not much to see except
 for the book page navigation (that works in desktop and on mobile).
 
+Note: deskewing and stitching the original scans of the journal has been made generic
+and moved to [its own repo](https://github.com/cliveholloway/document_digitizer/)
+
 ## Features in this repo
 
-For the original scans of the journal:
+### extract
 
-- convert TIF images to PNG
-- deskew images
-- stitch images together (TODO - steep learning curve here)
-
-For the transcript of the journal that's in a docx file:
+Process the transcript of the journal that's in a docx file:
 
 - parse the docx file 
 - create individual HTML pages for a browse option
 - create page text files to train an LLM
+
+There is currently a bug in this code ATM that doesn't create blank pages, so images
+are currently appended to incorrect pages.
+
+### ocr
+
+Process scans of images from the original journal:
+
+- batch process via Anthropic's API
+- review output and tweak prompt instructions to improve OCR 
+- commit updated prompt instructions and run again
+- when number of errors is very small, make this the final implementation
+  and compare against the manually transcribed version for diffs
+
+The goal of this is to show how I _could_ have created the HTML and text from
+the original images. When I first scanned them, an AI agent wasn't able
+to OCR them very well, so I had them transcribed manually, but this is a good
+demo of how to achieve the same goal via an LLM API.
 
 ## Notes
 
 I looked at auto-parsing out the images too, but hit some complications with the way
 the images were originally added, so I am only creating the HTML and comments dynamically.
 The images are fixed anyway, so the 10 minutes it took me to manually create the
-assets made a lot more sense than trying to hack through XML parsing.
+assets made a lot more sense than trying to hack through XML parsing. I'll fix this soon
 
-It looks like blank pages were omitted from the conversion though, so I do need to rename a
-bunch of the images so that they render on the correct pages (TODO).
-
-This will probably not be a complete project, but it should show how quickly I can
-learn and implement a new stack via "vibe coding" and by leveraging my understanding
-of design patterns from Perl. Much as I love Perl, I get that most of the industry
-has a not so good view of it, and it's days as a commercial language are numbered.
+This __is__ a work in progress, so until this file is cleaned up, assume docs may not
+match code, and code is incomplete.
 
 For more information about my general experience and references, please see:
 
@@ -74,43 +76,30 @@ After you've checked out the repo, you can run the individual scripts to see the
 action.
 
     # set up your env
-    python3 -m venv .venv
-    source .venv/bin/activate
-    pip install poetry
-    poetry install
+    python3 -m venv venv
 
-### Image processing
-
-For the image processing code, it's broken into 3 scripts. Each batch processes
-a directory of images. I have included scans of the first 2 pages in the repo
-
-    # convert the tif images to png images
-    python3 image_processing/scripts/1_batch_convert.py \
-        data/tif_flatbed_scans image_processing/build/png_scans 
-
-Converted png images are in image_processing/build/png_scans
-
-    # deskew the png_images
-    python3 image_processing/scripts/2_image_deskew.py \
-        image_processing/build/png_scans  image_processing/build/deskewed_scans 
-
-Deskewed images are in image_processing/build/deskewed_scans
-
-    # TODO - get stitching fixed and put instructions in here
+    # enter the env and install dependencies
+    source venv/bin/activate
+    pip install -e .
 
 ### Journal parsing
 
 For the journal processing, run this script to build out the web pages:
 
-    python3 journal_processing/scripts/extract.py \
-        data/HerbertHollowayJournals.docx
+    herbert extract data/HerbertHollowayJournals.docx
 
-After you run the script, you'll see the HTML pages and data.json in the dir;
+After you run the script, you'll see the text files, HTML page snippits and data.json in the dir;
 
-    journal_processing/build
+    output
 
 The data.json file is used to manage the comment additions to the pages.
 
 The pages and data.json are added to the web site via a build action in the web site repo.
 
-journal_processing/build/txt is going to be used to train the LLM - TODO
+See the Jekyll zip file for details of how the site is built (separate, private repo)
+
+txt is going to be used to train the LLM for questions - TODO
+
+### Image OCR
+
+Using Anthropic's API for Claude, I batch process the source images into txt files

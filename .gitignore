@@ -215,3 +215,4 @@ output/
 # config file
 config.toml
 
+**/.~lock*
