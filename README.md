@@ -2,9 +2,9 @@
 
 ## Introduction
 
-I have an ongoing personal project to study and publish information about
-my Great, Great Uncle based on his Journals. I am slowly building things out
-into a web site:
+I have an ongoing personal project to study and publish details about
+my Great, Great Uncle's life based on his Journals. I am slowly building
+things out into a web site:
 
 https://HerbertHolloway.org
 
@@ -16,7 +16,7 @@ out the site. Never used it before, but got everything built and working in less
 than a day, and figured it would be a good example of learning a new stack. The
 site is built out using a github deploy action.
 
-I have included a zip of the core of the Jekyll site as of 9/25 in this file:
+I have included a zip of the core of the Jekyll site as of 08/25 in this file:
 
     data/JekyllWebSite.zip
 
@@ -36,6 +36,8 @@ Process the transcript of the journal that's in a docx file:
 - create individual HTML pages for a browse option
 - create page text files to train an LLM
 
+### OCR
+
 Process scans of images from the original journal:
 
 - batch process via Anthropic's API
@@ -47,17 +49,15 @@ Process scans of images from the original journal:
 The goal of this is to show how I _could_ have created the HTML and text from
 the original images. When I first scanned them, an AI agent wasn't able
 to OCR them very well, so I had them transcribed manually, but this is a good
-demo of how to achieve the same goal via an LLM API.
+demo of how I would achieve the same goal via LLM API calls.
 
 ## Notes
 
-I looked at auto-parsing out the images too, but hit some complications with the way
-the images were originally added, so I am only creating the HTML and comments dynamically.
-The images are fixed anyway, so the 10 minutes it took me to manually create the
-assets made a lot more sense than trying to hack through XML parsing. I'll fix this soon
-
-This __is__ a work in progress, so until this file is cleaned up, assume docs may not
-match code, and code is incomplete.
+I looked at auto-parsing out the images too when building the web pages, but hit some
+ complications with the way the images were originally added, so I am only creating the
+HTML and comments dynamically.  The images are fixed anyway, so the 10 minutes it took
+me to manually create the assets made a lot more sense than trying to hack through XML
+parsing. 
 
 For more information about my general experience and references, please see:
 
@@ -98,16 +98,22 @@ txt is going to be used to train the LLM for questions on the web site
 
 ### Image OCR
 
-Using Anthropic's API for Claude, I batch process the source images into txt files.
+Using Anthropic's API for Claude, I batch process the source images into txt files using both
+the Sonnet and Opus models.
+
 I've been playing around with a few prompt structures, and have found that adding "hint" images
 to help with the cursive that the quality of the OCR improves, but it would still need
-a lot of manual review before I would trust it to completely transcribe, but I think it's
-a useful demo as is.
+a lot of manual review before I would trust it to completely transcriber. I do think it's
+a useful demo as is though.
 
-To run this, you will need an anthropic API key, and set it in the `ANTHROPIC_API_KEY`
+To run this, you will need an anthropic API key, and you must set it in the `ANTHROPIC_API_KEY`
 environment variable.
 
-I am not fleshing this out right now, since I already have a transcript, but wanted to
-demonstrate the appraoch I would take. No doubt if this was need for a commercial
+```bash
+export ANTHROPIC_API_KEY=...
+```
+
+I am not fleshing this demo out further right now, since I already have a transcript, but wanted to
+demonstrate the appraoch I _would_ take. No doubt if this was needied for a commercial
 application I would refine the prompt and hints, and compare output fronm each model
-to attempt to correct errors.
+to attempt to correct errors over several iterations.

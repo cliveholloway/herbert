@@ -12,6 +12,21 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install LibreOffice and process files
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libreoffice --no-install-recommends
+          python3 -m venv venv
+          source venv/bin/activate
+          pip install --upgrade pip
+          pip install -e .
+          herbert extract data/HerbertHollowayJournals.docx
+
       - name: Set up SSH
         run: |
           mkdir -p ~/.ssh
@@ -21,12 +36,8 @@ jobs:
 
       - name: Deploy with rsync
         run: |
-          rsync -az --delete ./ clive@cliveholloway.net:~/herbert/
+          rsync -az --delete -e "ssh -i ~/.ssh/id_ed25519 -o ServerAliveInterval=30" ./ clive@cliveholloway.net:~/herbert/
 
-      - name: Set up venv and run post-deploy script
+      - name: Server cleanup
         run: |
-          ssh -i ~/.ssh/id_ed25519 clive@cliveholloway.net << 'EOF'
-            set -e
-            cd ~/herbert
-            ./.github/scripts/post_deploy.sh
-          EOF
+          ssh -i ~/.ssh/id_ed25519 -o ServerAliveInterval=30 -o ConnectTimeout=60 clive@cliveholloway.net "cd ~/herbert && echo 'Deploy complete at $(date)'"
