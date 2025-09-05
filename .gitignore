@@ -216,3 +216,4 @@ output/
 config.toml
 
 **/.~lock*
+**/test/*

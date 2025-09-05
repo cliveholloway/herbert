@@ -1,0 +1,11 @@
+01 => "Pightle",
+02 => etc
+03 => eligable
+04 => repainted
+05 => candidly
+06 => existance,
+07 => do
+08 => table cloth
+09 => Mr. Crew's
+10 => 1848,
+11 => 4th

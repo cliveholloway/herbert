@@ -8,15 +8,15 @@ into a web site:
 
 https://HerbertHolloway.org
 
-So, I thought I'd take the opportunity to demonstrate some Python coding - 
+So, I thought I'd take the opportunity to learn some Python - 
 something I should probably do after spending 30 years focusing mainly on Perl.
 
-I've used [Jekyll](https://jekyllrb.com/) to build out the site. Never used it
-before, but got everything built and working in less than a day, and figured
-it would be a good example of learning a new stack. The site is built out using
-a github deploy action.
+I've also used [Jekyll](https://jekyllrb.com/) (ruby site templates) to build
+out the site. Never used it before, but got everything built and working in less
+than a day, and figured it would be a good example of learning a new stack. The
+site is built out using a github deploy action.
 
-I have included a zip of the core of the Jekyll site in this file:
+I have included a zip of the core of the Jekyll site as of 9/25 in this file:
 
     data/JekyllWebSite.zip
 
@@ -35,11 +35,6 @@ Process the transcript of the journal that's in a docx file:
 - parse the docx file 
 - create individual HTML pages for a browse option
 - create page text files to train an LLM
-
-There is currently a bug in this code ATM that doesn't create blank pages, so images
-are currently appended to incorrect pages.
-
-### ocr
 
 Process scans of images from the original journal:
 
@@ -96,10 +91,23 @@ The data.json file is used to manage the comment additions to the pages.
 
 The pages and data.json are added to the web site via a build action in the web site repo.
 
-See the Jekyll zip file for details of how the site is built (separate, private repo)
+See the Jekyll zip file for details of how the site is built (separate, private repo,
+snapshot from August 2025))
 
-txt is going to be used to train the LLM for questions - TODO
+txt is going to be used to train the LLM for questions on the web site
 
 ### Image OCR
 
-Using Anthropic's API for Claude, I batch process the source images into txt files
+Using Anthropic's API for Claude, I batch process the source images into txt files.
+I've been playing around with a few prompt structures, and have found that adding "hint" images
+to help with the cursive that the quality of the OCR improves, but it would still need
+a lot of manual review before I would trust it to completely transcribe, but I think it's
+a useful demo as is.
+
+To run this, you will need an anthropic API key, and set it in the `ANTHROPIC_API_KEY`
+environment variable.
+
+I am not fleshing this out right now, since I already have a transcript, but wanted to
+demonstrate the appraoch I would take. No doubt if this was need for a commercial
+application I would refine the prompt and hints, and compare output fronm each model
+to attempt to correct errors.

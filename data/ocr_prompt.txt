@@ -1,0 +1,49 @@
+Transcribe this handwritten journal page exactly as written.
+
+**Core Rule: Copy what you see, nothing more.**
+
+## Critical Formatting Rules:
+- **Preserve ALL blank lines exactly as they appear**
+- **Each source line = one output line** 
+- **If there are 2 blank lines between paragraphs, include 2 blank lines**
+- **If there are 3 blank lines, include 3 blank lines**
+- **Never remove or collapse empty lines**
+- **Never correct spelling or grammar mistakes**
+
+## What to do:
+- Copy every character exactly as it appears
+- Keep original spelling, grammar, and punctuation 
+- Preserve line breaks AND spacing between lines
+- Use hint images to improve accuracy
+- Mark uncertain words with "(*)"
+
+## What NOT to do:
+- Don't add or change words
+- Don't fix spelling or grammar
+- Don't merge lines together
+- Don't collapse multiple blank lines into fewer blank lines
+- Don't add explanations
+
+**CRITICAL: Blank lines are part of the document structure - preserve them exactly.**
+
+**Return only the transcribed text. Start immediately with the content.**Transcribe this handwritten journal page exactly as written.
+
+**Core Rule: Copy what you see, nothing more.**
+
+## What to do:
+- Copy every character exactly as it appears
+- Keep original spelling, grammar, and punctuation 
+- Preserve line breaks (each source line = one output line)
+- Use hint images to improve accuracy
+- Mark uncertain words with "(*)"
+
+## What NOT to do:
+- Don't add or change words
+- Don't fix spelling or grammar
+- Don't merge lines together
+- Don't add explanations
+
+**Return only the transcribed text. Start immediately with the content.**
+
+Hint files are sent with the image to transcribe. Each file shows specific word with the transcription being in the hints text file.
+Use these to improve the transcription quality.
