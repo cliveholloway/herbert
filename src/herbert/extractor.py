@@ -563,8 +563,19 @@ def extract_docx(source_file: str) -> None:
             fw = ctx.get("after_words", "").strip()
             print(f"  - id=c{cid}: anchor='{anchor}' before='{bw}' after='{fw}'")
 
+    data_for_js = {}
+    for page_data in metadata:
+        page_num = page_data["page"]
+        page_comments = {}
+        for comment in page_data["comments"]:
+            page_comments[comment["id"]] = comment["text"]
+
+        # Only add pages that have comments
+        if page_comments:
+            data_for_js[str(page_num)] = page_comments
+
     with open(json_path, "w", encoding="utf-8") as f:
-        json.dump(metadata, f, indent=2)
+        json.dump(data_for_js, f, indent=2)
 
     print(f"PDF saved as: {pdf_path}")
     print(f"\u2713 Extracted {len(page_texts) - 1} pages to {OUTPUT_DIR}/")
