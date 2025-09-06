@@ -476,7 +476,7 @@ def extract_docx(source_file: str) -> None:
     base = os.path.splitext(os.path.basename(source_file))[0]
     html_dir = os.path.join(OUTPUT_DIR, "html")
     txt_dir = os.path.join(OUTPUT_DIR, "txt")
-    json_path = os.path.join(OUTPUT_DIR, f"{base}.comments.json")
+    json_path = os.path.join(OUTPUT_DIR, "data.json")
     os.makedirs(html_dir, exist_ok=True)
     os.makedirs(txt_dir, exist_ok=True)
 
