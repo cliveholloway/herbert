@@ -30,6 +30,10 @@ jobs:
       - name: Set up SSH
         run: |
           mkdir -p ~/.ssh
+          if [ -z "${{ secrets.DEPLOY_SSH_KEY }}" ]; then
+            echo "ERROR: DEPLOY_SSH_KEY secret is empty or not set"
+            exit 1
+          fi
           echo "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan cliveholloway.net >> ~/.ssh/known_hosts
@@ -41,3 +45,4 @@ jobs:
       - name: Server cleanup
         run: |
           ssh -i ~/.ssh/id_ed25519 -o ServerAliveInterval=30 -o ConnectTimeout=60 clive@cliveholloway.net "cd ~/herbert && echo 'Deploy complete at $(date)'"
+
