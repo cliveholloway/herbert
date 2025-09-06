@@ -518,8 +518,8 @@ def extract_docx(source_file: str) -> None:
         if page_num == 0:
             continue
 
-        html_path = os.path.join(html_dir, f"page{page_num:03d}.html")
-        txt_path = os.path.join(txt_dir, f"page{page_num:03d}.txt")
+        html_path = os.path.join(html_dir, f"page{page_num}.html")
+        txt_path = os.path.join(txt_dir, f"page{page_num}.txt")
 
         page_text = page_texts[page_num]
         lines = page_text.split('\n')
