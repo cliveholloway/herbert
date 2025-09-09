@@ -54,6 +54,31 @@ except ImportError as e:
     exit(1)
 "
 
+# Check if environment variables are set
+echo "Checking database environment variables..."
+if [ -z "$POSTGRES_RW_USER" ]; then
+    echo "✗ POSTGRES_RW_USER environment variable not set"
+    echo "Please set: export POSTGRES_RW_USER=your_username"
+    exit 1
+fi
+
+if [ -z "$POSTGRES_RW_PASSWORD" ]; then
+    echo "✗ POSTGRES_RW_PASSWORD environment variable not set"
+    echo "Please set: export POSTGRES_RW_PASSWORD=your_password"
+    exit 1
+fi
+
+echo "✓ Database environment variables are set"
+
+# Build search index
+echo "Building search index..."
+if python src/herbert/build_search.py; then
+    echo "✓ Search index built successfully"
+else
+    echo "✗ Failed to build search index"
+    exit 1
+fi
+
 # Cleanup unnecessary files
 echo "Cleaning up temporary and cache files..."
 
@@ -76,6 +101,9 @@ find . -name ".DS_Store" -delete 2>/dev/null || true
 echo "  ✓ Removed .DS_Store files"
 
 echo "✓ Deployment complete!"
-echo "To run the build script:"
+echo "✓ Search database is ready!"
+echo ""
+echo "To test the search:"
 echo "  source venv/bin/activate"
-echo "  python src/herbert/build_search.py"
+echo "  psql -d herbert -c 'SELECT COUNT(*) FROM search_data;'"
+
