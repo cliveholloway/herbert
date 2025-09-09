@@ -14,6 +14,7 @@ dependencies = [
     "python-docx",
     "anthropic",
     "pdfplumber",
+    "psycopg2",
 ]
 
 [project.scripts]
