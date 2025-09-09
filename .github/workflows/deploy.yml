@@ -42,10 +42,6 @@ jobs:
         run: |
           rsync -az --delete -e "ssh -i ~/.ssh/id_ed25519 -o ServerAliveInterval=30" ./ clive@cliveholloway.net:~/herbert/
 
-      - name: Install dependencies on server
+      - name: Run deployment script
         run: |
-          ssh -i ~/.ssh/id_ed25519 -o ServerAliveInterval=30 -o ConnectTimeout=60 clive@cliveholloway.net "cd ~/herbert && rm -rf venv && python3 -m venv venv && source venv/bin/activate && pip install --upgrade pip && pip install -e ."
-
-      - name: Server cleanup
-        run: |
-          ssh -i ~/.ssh/id_ed25519 -o ServerAliveInterval=30 -o ConnectTimeout=60 clive@cliveholloway.net "cd ~/herbert && find . -name '*.pyc' -delete && find . -name '__pycache__' -type d -exec rm -rf {} + 2>/dev/null || true"
+          ssh -i ~/.ssh/id_ed25519 -o ServerAliveInterval=30 -o ConnectTimeout=60 clive@cliveholloway.net "cd ~/herbert && ./deploy.sh"
