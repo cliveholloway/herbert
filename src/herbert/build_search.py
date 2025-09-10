@@ -68,10 +68,18 @@ def create_search_table(conn: psycopg2.extensions.connection) -> None:
     )
     """
     
+    # Enable trigram extension and create index for phonetic search
+    setup_extensions_sql = """
+    CREATE EXTENSION IF NOT EXISTS pg_trgm;
+    CREATE INDEX IF NOT EXISTS search_data_content_trgm_idx
+    ON search_data USING GIN (content gin_trgm_ops);
+    """
+
     with conn.cursor() as cur:
         cur.execute(create_table_sql)
+        cur.execute(setup_extensions_sql)
         conn.commit()
-        print("Created search_data table")
+        print("Created search_data table with trigram index")
 
 
 def extract_page_number(filename: str) -> Optional[int]:
