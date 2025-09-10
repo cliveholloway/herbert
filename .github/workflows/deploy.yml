@@ -43,5 +43,11 @@ jobs:
           rsync -az --delete -e "ssh -i ~/.ssh/id_ed25519 -o ServerAliveInterval=30" ./ clive@cliveholloway.net:~/herbert/
 
       - name: Run deployment script
+        env:
+          POSTGRES_RW_USER: ${{ secrets.POSTGRES_RW_USER }}
+          POSTGRES_RW_PASSWORD: ${{ secrets.POSTGRES_RW_PASSWORD }}
         run: |
-          ssh -i ~/.ssh/id_ed25519 -o ServerAliveInterval=30 -o ConnectTimeout=60 clive@cliveholloway.net "cd ~/herbert && ./deploy.sh"
+          ssh -i ~/.ssh/id_ed25519 -o ServerAliveInterval=30 -o ConnectTimeout=60 clive@cliveholloway.net "
+            cd ~/herbert && 
+            POSTGRES_RW_USER='$POSTGRES_RW_USER' POSTGRES_RW_PASSWORD='$POSTGRES_RW_PASSWORD' ./deploy.sh
+          "
