@@ -117,6 +117,6 @@ To process a directory of images, run:
     herbert ocr data/test_scans
 
 I am not fleshing this demo out further right now, since I already have a transcript, but wanted to
-demonstrate the approach I _would_ take if startiung today. No doubt if this was needied for a
+demonstrate the approach I _would_ take if starting today. No doubt if this was needied for a
 commercial application I would refine the prompt and hints, and compare output from each model
 to attempt to correct errors over several iterations.
