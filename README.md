@@ -97,7 +97,7 @@ txt is going to be used to train the LLM for questions on the web site.
 
 ### Image OCR
 
-Using Anthropic's API for Claude, I batch process the source images into txt files using both
+Using Anthropic's API for Claude, I batch processed the source images into txt files using both
 the Sonnet and Opus models.
 
 I've been playing around with a few prompt structures, and have found that adding "hint" images
